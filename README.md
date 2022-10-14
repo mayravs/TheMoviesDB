@@ -4,7 +4,7 @@ TheMoviesDB is an app that allows users to browse movies from the [The Movie Dat
 
 ### User Stories
 
-- [ ] User can view and scroll through a list of moves now playing in theaters.
+- [x] User can view and scroll through a list of moves now playing in theaters.
 - [ ] User can click on a movie to see additional details of the movie on a separate detail screen.
 - [ ] User can refresh the list of movies from the ActionBar of the main screen.
 - [ ] User can view the app on various device sizes and orientations.
@@ -20,3 +20,4 @@ COMING SOON
 * [Hilt](https://dagger.dev/hilt/)
 * [Jetpack](https://developer.android.com/jetpack/getting-started)
 * [Kotlin](https://kotlinlang.org/)
+* [Data Binding Library](https://developer.android.com/topic/libraries/data-binding)
