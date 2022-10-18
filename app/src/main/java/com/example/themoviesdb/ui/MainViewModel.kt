@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.themoviesdb.BuildConfig
 import com.example.themoviesdb.domain.model.Movie
 import com.example.themoviesdb.domain.usecase.GetMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,13 +19,12 @@ class MainViewModel @Inject constructor(
     val movies: LiveData<List<Movie>> get() = _movies
 
     init {
-        getMoviesNowPlaying(BuildConfig.MOVIESDB_KEY)
-        // Should BuildConfig.MOVIESDB_KEY be used here?
+        getMoviesNowPlaying()
     }
 
-    private fun getMoviesNowPlaying(apiKey: String) {
+    private fun getMoviesNowPlaying() {
         viewModelScope.launch {
-            getMoviesUseCase(apiKey).let {
+            getMoviesUseCase().let {
                 _movies.postValue(it)
             }
         }

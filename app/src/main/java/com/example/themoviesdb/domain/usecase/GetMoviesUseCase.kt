@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 class GetMoviesUseCase @Inject constructor(private val movieRepo: MovieRepo) {
 
-    suspend operator fun invoke(apiKey: String): List<Movie> {
-        val moviesResponse = movieRepo.getMoviesNowPlaying(apiKey)
+    suspend operator fun invoke(): List<Movie> {
+        val moviesResponse = movieRepo.getMoviesNowPlaying()
         return moviesResponse.results
     }
 

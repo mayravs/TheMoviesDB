@@ -11,7 +11,8 @@ import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.MovieItemBinding
 import com.example.themoviesdb.domain.model.Movie
 
-class MoviesAdapter : ListAdapter<Movie, MoviesAdapter.ViewHolder>(DiffCallback) {
+class MoviesAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<Movie, MoviesAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -25,10 +26,14 @@ class MoviesAdapter : ListAdapter<Movie, MoviesAdapter.ViewHolder>(DiffCallback)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val movie = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(movie)
+        }
+        holder.bind(movie)
     }
 
-    class ViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: Movie) {
             binding.setVariable(BR.movie, movie)
@@ -43,6 +48,10 @@ class MoviesAdapter : ListAdapter<Movie, MoviesAdapter.ViewHolder>(DiffCallback)
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return newItem == oldItem
         }
-
     }
+
+    class OnClickListener(val clickListener: (movie: Movie) -> Unit) {
+        fun onClick(movie: Movie) = clickListener(movie)
+    }
+
 }

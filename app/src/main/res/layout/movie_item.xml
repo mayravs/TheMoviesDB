@@ -19,7 +19,7 @@
             android:layout_height="180dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            app:imageUrl="@{movie.poster_path}"
+            app:posterImageUrl="@{movie.poster_path}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
