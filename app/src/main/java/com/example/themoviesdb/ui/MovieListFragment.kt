@@ -2,6 +2,7 @@ package com.example.themoviesdb.ui
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,8 +15,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MovieListFragment : Fragment() {
     private lateinit var binding: FragmentMovieListBinding
-    private val movieListViewModel by viewModels<MainViewModel>()
+    private val mainViewModel by viewModels<MainViewModel>()
     private lateinit var moviesAdapter: MoviesAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +35,7 @@ class MovieListFragment : Fragment() {
             false
         ).apply {
             lifecycleOwner = viewLifecycleOwner
-            viewModel = movieListViewModel
+            viewModel = mainViewModel
         }
         return binding.root
     }
@@ -57,9 +63,10 @@ class MovieListFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        with(movieListViewModel) {
+        with(mainViewModel) {
             movies.observe(viewLifecycleOwner) {
                 moviesAdapter.submitList(it)
+                println(movies.value?.get(0)?.title)
             }
         }
     }
@@ -71,7 +78,7 @@ class MovieListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miRefresh -> {
-                println("refresh clicked!")
+                initViewModel()
                 true
             }
             else -> {

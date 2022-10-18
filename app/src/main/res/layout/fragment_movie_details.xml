@@ -4,57 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.themoviesdb.ui.MainViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-        <ImageView
-            android:id="@+id/ivBackdrop"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvMovieTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:text="Orphan: First Kill" />
+            <ImageView
+                android:id="@+id/ivBackdrop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-        <TextView
-            android:id="@+id/tvReleaseDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            tools:text="2022-07-27" />
+            <TextView
+                android:id="@+id/tvMovieTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:text="Orphan: First Kill" />
 
-        <RatingBar
-            android:id="@+id/rbVoteAverage"
-            style="@android:style/Widget.Material.RatingBar.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:isIndicator="true"
-            android:numStars="5" />
+            <TextView
+                android:id="@+id/tvReleaseDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                tools:text="2022-07-27" />
 
-        <TextView
-            android:id="@+id/tvMovieOverview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginStart="10dp"
-            tools:text="After escaping from an Estonian psychiatric facility, Leena Klammer travels to America by impersonating Esther, the missing daughter of a wealthy family. But when her mask starts to slip, she is put against a mother who will protect her family from the murderous “child” at any cost." />
-    </LinearLayout>
+            <RatingBar
+                android:id="@+id/rbVoteAverage"
+                style="@android:style/Widget.Material.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:isIndicator="true"
+                android:numStars="5" />
+
+            <TextView
+                android:id="@+id/tvMovieOverview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginStart="10dp"
+                tools:text="After escaping from an Estonian psychiatric facility, Leena Klammer travels to America by impersonating Esther, the missing daughter of a wealthy family. But when her mask starts to slip, she is put against a mother who will protect her family from the murderous “child” at any cost." />
+        </LinearLayout>
+    </ScrollView>
 </layout>

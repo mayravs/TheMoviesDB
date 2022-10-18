@@ -24,8 +24,10 @@ class MainViewModel @Inject constructor(
 
     private fun getMoviesNowPlaying() {
         viewModelScope.launch {
-            getMoviesUseCase().let {
-                _movies.postValue(it)
+            if (_movies != null){
+                getMoviesUseCase().let {
+                    _movies.postValue(it)
+                }
             }
         }
     }
