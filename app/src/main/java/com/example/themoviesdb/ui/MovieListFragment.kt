@@ -2,7 +2,6 @@ package com.example.themoviesdb.ui
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -48,10 +47,10 @@ class MovieListFragment : Fragment() {
 
     private fun initRv() {
         moviesAdapter = MoviesAdapter(MoviesAdapter.OnClickListener { movie ->
-            val action = MovieListFragmentDirections.actionMovieListFragmentToMovieDetailsFragment(movie)
+            val action =
+                MovieListFragmentDirections.actionMovieListFragmentToMovieDetailsFragment(movie)
             findNavController().navigate(action)
         })
-
         binding.rvMovies.apply {
             adapter = moviesAdapter
             layoutManager = LinearLayoutManager(
@@ -66,7 +65,6 @@ class MovieListFragment : Fragment() {
         with(mainViewModel) {
             movies.observe(viewLifecycleOwner) {
                 moviesAdapter.submitList(it)
-                println(movies.value?.get(0)?.title)
             }
         }
     }
@@ -78,7 +76,7 @@ class MovieListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miRefresh -> {
-                initViewModel()
+                mainViewModel.getMoviesNowPlaying()
                 true
             }
             else -> {

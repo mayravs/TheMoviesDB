@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> get() = _movies
@@ -22,12 +22,11 @@ class MainViewModel @Inject constructor(
         getMoviesNowPlaying()
     }
 
-    private fun getMoviesNowPlaying() {
+    fun getMoviesNowPlaying() {
         viewModelScope.launch {
-            if (_movies != null){
-                getMoviesUseCase().let {
-                    _movies.postValue(it)
-                }
+            if (_movies.value == null) {
+                val movies = getMoviesUseCase()
+                _movies.value = movies
             }
         }
     }
