@@ -12,7 +12,7 @@ TheMoviesDB is an app that allows users to browse movies from the [The Movie Dat
 ### App Walkthrough GIF
 
 COMING SOON
-<!--<img src="YOUR_GIF_URL_HERE" width=250><br> -->
+<!--<img src="project_demo.gif" width=250><br> -->
 
 ### Built With:
 
