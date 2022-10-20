@@ -4,7 +4,7 @@ TheMoviesDB is an android app that allows users to browse movies from the [The M
 
 ### User Stories
 
-- [x] User can view and scroll through a list of [current popular movies](https://developers.themoviedb.org/3/movies/get-popular-movies)
+- [x] User can view and scroll through a list of [movies currently playing in theaters](https://developers.themoviedb.org/3/movies/get-now-playing)
 - [x] User can click on a movie to see additional details of the movie on a separate detail screen.
 - [x] User can refresh the list of movies from the ActionBar of the main screen.
 - [x] User can view the app on various device sizes and orientations.
