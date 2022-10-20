@@ -1,5 +1,6 @@
 package com.example.themoviesdb.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,9 +25,12 @@ class MainViewModel @Inject constructor(
 
     fun getMoviesNowPlaying() {
         viewModelScope.launch {
-            if (_movies.value == null) {
+            try {
                 val movies = getMoviesUseCase()
                 _movies.value = movies
+                Log.i("MainViewModel", "api call")
+            } catch (e: Exception){
+                Log.e("MainViewModel", "Encountered exception $e")
             }
         }
     }
