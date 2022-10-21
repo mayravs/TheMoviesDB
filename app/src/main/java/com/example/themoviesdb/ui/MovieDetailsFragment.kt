@@ -1,9 +1,7 @@
 package com.example.themoviesdb.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -41,10 +39,11 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun initUI() {
+        (activity as MainActivity).supportActionBar?.title = movie?.title
         with(binding){
-            tvMovieTitle.text = movie?.title
             tvMovieOverview.text = movie?.overview
-            tvReleaseDate.text = "Released on: " + movie?.release_date
+            val releaseDate = movie?.release_date
+            tvReleaseDate.text = getString(R.string.release_date, releaseDate)
             rbVoteAverage.rating = (movie?.vote_average?.toFloat()?.times(5))?.div(10)!!
             val imageUrl = "https://image.tmdb.org/t/p/w780/${movie?.backdrop_path}"
             Glide.with(requireActivity()).load(imageUrl).into(ivBackdrop)

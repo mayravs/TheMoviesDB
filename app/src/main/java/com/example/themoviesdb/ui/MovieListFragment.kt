@@ -44,6 +44,7 @@ class MovieListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRv()
         initViewModel()
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     private fun initRv() {
