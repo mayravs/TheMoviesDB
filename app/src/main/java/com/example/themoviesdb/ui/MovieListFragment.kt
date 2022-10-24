@@ -81,6 +81,7 @@ class MovieListFragment : Fragment() {
             R.id.miRefresh -> {
                 showProgressBar()
                 mainViewModel.getMoviesNowPlaying()
+                binding.rvMovies.smoothScrollToPosition(0)
                 hideProgressBar()
                 true
             }

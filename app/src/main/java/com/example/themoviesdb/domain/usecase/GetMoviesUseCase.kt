@@ -8,7 +8,7 @@ class GetMoviesUseCase @Inject constructor(private val movieRepo: MovieRepo) {
 
     suspend operator fun invoke(): List<Movie> {
         val moviesResponse = movieRepo.getMoviesNowPlaying()
-        return moviesResponse.results
+        return moviesResponse.results.sortedByDescending { it.release_date }
     }
 
 }
