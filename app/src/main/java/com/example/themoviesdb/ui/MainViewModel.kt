@@ -18,6 +18,7 @@ class MainViewModel @Inject constructor(
 
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>> get() = _movies
+    var movie: Movie? = null
 
     init {
         getMoviesNowPlaying()

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.FragmentMovieDetailsBinding
@@ -14,14 +15,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailsBinding
-    private var movie: Movie? = null
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        movie = arguments?.getParcelable("movie")
+        mainViewModel.movie = arguments?.getParcelable("movie")
         binding = DataBindingUtil.inflate<FragmentMovieDetailsBinding>(
             inflater,
             R.layout.fragment_movie_details,
@@ -29,24 +30,13 @@ class MovieDetailsFragment : Fragment() {
             false
         ).apply {
             lifecycleOwner = viewLifecycleOwner
+            viewModel = mainViewModel
         }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initUI()
-    }
-
-    private fun initUI() {
-        (activity as MainActivity).supportActionBar?.title = movie?.title
-        with(binding){
-            tvMovieOverview.text = movie?.overview
-            val releaseDate = movie?.release_date
-            tvReleaseDate.text = getString(R.string.release_date, releaseDate)
-            rbVoteAverage.rating = (movie?.vote_average?.toFloat()?.times(5))?.div(10)!!
-            val imageUrl = "https://image.tmdb.org/t/p/w780/${movie?.backdrop_path}"
-            Glide.with(requireActivity()).load(imageUrl).into(ivBackdrop)
-        }
+        (activity as MainActivity).supportActionBar?.title = mainViewModel.movie?.title
     }
 }

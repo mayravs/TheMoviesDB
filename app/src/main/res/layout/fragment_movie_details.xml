@@ -23,6 +23,7 @@
 
             <ImageView
                 android:id="@+id/ivBackdrop"
+                app:backdropImageUrl="@{viewModel.movie.backdrop_path}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -33,6 +34,7 @@
 
             <TextView
                 android:id="@+id/tvReleaseDate"
+                android:text="@{@string/release_date(viewModel.movie.release_date)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -43,6 +45,7 @@
 
             <RatingBar
                 android:id="@+id/rbVoteAverage"
+                app:rating="@{viewModel.movie.vote_average}"
                 style="@android:style/Widget.Material.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,6 +58,7 @@
 
             <TextView
                 android:id="@+id/tvMovieOverview"
+                android:text="@{viewModel.movie.overview}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
