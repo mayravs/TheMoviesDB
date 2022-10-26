@@ -36,7 +36,7 @@ class MoviesAdapter(private val onClickListener: OnClickListener) :
     class ViewHolder(private val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(movie: Movie) {
-            binding.setVariable(BR.movie, movie)
+            binding.movie = movie
         }
     }
 
