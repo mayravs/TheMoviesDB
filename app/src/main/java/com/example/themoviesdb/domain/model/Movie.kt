@@ -11,4 +11,5 @@ data class Movie(
     val vote_average: Double,
     val release_date: String,
     val poster_path: String,
-    val backdrop_path: String): Parcelable
+    val backdrop_path: String
+) : Parcelable

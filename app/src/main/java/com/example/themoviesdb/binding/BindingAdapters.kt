@@ -1,8 +1,9 @@
 package com.example.themoviesdb.binding
 
-import android.media.Rating
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.RatingBar
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
@@ -21,4 +22,9 @@ fun ImageView.loadBackdropImage(url: String){
 @BindingAdapter("rating")
 fun RatingBar.rating(rating: Double){
     this.rating = (rating.toFloat().times(5)).div(10)
+}
+
+@BindingAdapter("refresh")
+fun refresh(progressBar: ProgressBar, refresh: Boolean) {
+    progressBar.isVisible = refresh
 }

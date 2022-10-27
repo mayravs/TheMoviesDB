@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.FragmentMovieListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +17,6 @@ class MovieListFragment : Fragment() {
     private lateinit var binding: FragmentMovieListBinding
     private val mainViewModel by viewModels<MainViewModel>()
     private lateinit var moviesAdapter: MoviesAdapter
-    private lateinit var miActionProgressItem: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,29 +73,18 @@ class MovieListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_movies, menu)
-        miActionProgressItem = menu.findItem(R.id.miActionProgress)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miRefresh -> {
-                showProgressBar()
                 mainViewModel.getMoviesNowPlaying()
                 binding.rvMovies.smoothScrollToPosition(0)
-                hideProgressBar()
                 true
             }
             else -> {
                 super.onOptionsItemSelected(item)
             }
         }
-    }
-
-    fun showProgressBar(){
-        miActionProgressItem.isVisible = true
-    }
-
-    fun hideProgressBar(){
-        miActionProgressItem.isVisible = false
     }
 }
