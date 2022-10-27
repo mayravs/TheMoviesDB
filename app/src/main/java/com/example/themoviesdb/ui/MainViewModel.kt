@@ -24,6 +24,9 @@ class MainViewModel @Inject constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
+    private val _isSuccessful = MutableLiveData<Boolean>()
+    val isSuccessful: LiveData<Boolean> get() = _isSuccessful
+
     var movie: Movie? = null
 
     init {
@@ -38,9 +41,12 @@ class MainViewModel @Inject constructor(
                 delay(600)
                 val movies = getMoviesUseCase()
                 _movies.value = movies
+                _isSuccessful.value = true
                 hideProgressBar()
                 Log.i("MainViewModel", "api call")
-            } catch (e: Exception){
+            } catch (e: Exception) {
+                _isSuccessful.value = false
+                hideProgressBar()
                 Log.e("MainViewModel", "Encountered exception $e")
             }
         }

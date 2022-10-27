@@ -2,6 +2,7 @@ package com.example.themoviesdb.ui
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -78,8 +79,19 @@ class MovieListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miRefresh -> {
-                mainViewModel.getMoviesNowPlaying()
-                binding.rvMovies.smoothScrollToPosition(0)
+                with(mainViewModel) {
+                    getMoviesNowPlaying()
+                    isSuccessful.observe(viewLifecycleOwner) {
+                        when (it) {
+                            true -> binding.rvMovies.smoothScrollToPosition(0)
+                            false -> Toast.makeText(
+                                requireActivity(),
+                                "Network request error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
                 true
             }
             else -> {
