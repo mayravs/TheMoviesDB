@@ -1,6 +1,7 @@
 package com.example.themoviesdb.di
 
 import android.content.Context
+import com.example.themoviesdb.BuildConfig
 import com.example.themoviesdb.TheMoviesDBApp
 import dagger.Module
 import dagger.Provides
@@ -26,7 +27,9 @@ class ApplicationModuleProvider {
     }
 
     @Provides
+    @Singleton
     fun provideRetrofit(retrofitBuilder: Retrofit.Builder): Retrofit {
-        return TheMoviesDBApp.getMoviesDBRetrofit(retrofitBuilder)
+        return retrofitBuilder.baseUrl(BuildConfig.MOVIESDB_URL).build()
     }
+
 }
