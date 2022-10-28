@@ -2,26 +2,18 @@ package com.example.themoviesdb.binding
 
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.RatingBar
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
 @BindingAdapter("posterImageUrl")
-fun ImageView.loadPosterImage(url: String){
-    val imageUrl = "https://image.tmdb.org/t/p/w342/$url"
-    Glide.with(this).load(imageUrl).into(this)
+fun ImageView.loadPosterImage(url: String?){
+    Glide.with(this).load(url).into(this)
 }
 
 @BindingAdapter("backdropImageUrl")
-fun ImageView.loadBackdropImage(url: String){
-    val imageUrl = "https://image.tmdb.org/t/p/w780/$url"
-    Glide.with(this).load(imageUrl).into(this)
-}
-
-@BindingAdapter("rating")
-fun RatingBar.rating(rating: Double){
-    this.rating = (rating.toFloat().times(5)).div(10)
+fun ImageView.loadBackdropImage(url: String?){
+    Glide.with(this).load(url).into(this)
 }
 
 @BindingAdapter("refresh")

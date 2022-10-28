@@ -35,7 +35,7 @@
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:posterImageUrl="@{movie.poster_path}"
+                app:posterImageUrl="@{movie.posterImageUrl}"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
