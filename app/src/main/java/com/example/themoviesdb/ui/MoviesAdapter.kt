@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.themoviesdb.BR
 import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.MovieItemBinding
 import com.example.themoviesdb.domain.model.Movie

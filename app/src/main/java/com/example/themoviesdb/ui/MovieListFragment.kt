@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.FragmentMovieListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,14 +53,7 @@ class MovieListFragment : Fragment() {
                 MovieListFragmentDirections.actionMovieListFragmentToMovieDetailsFragment(movie)
             findNavController().navigate(action)
         })
-        binding.rvMovies.apply {
-            adapter = moviesAdapter
-            layoutManager = LinearLayoutManager(
-                this.context,
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-        }
+        binding.rvMovies.adapter = moviesAdapter
     }
 
     private fun initViewModel() {

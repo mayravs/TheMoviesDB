@@ -5,10 +5,8 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
 import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.FragmentMovieDetailsBinding
-import com.example.themoviesdb.domain.model.Movie
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
