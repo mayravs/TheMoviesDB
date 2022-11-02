@@ -5,9 +5,8 @@ import android.view.*
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.FragmentMovieListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MovieListFragment : Fragment() {
     private lateinit var binding: FragmentMovieListBinding
-    private val mainViewModel by viewModels<MainViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
     private lateinit var moviesAdapter: MoviesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +60,19 @@ class MovieListFragment : Fragment() {
             movies.observe(viewLifecycleOwner) {
                 moviesAdapter.submitList(it)
             }
+
+            actionSuccessful.observe(viewLifecycleOwner) {
+                it.getContentIfNotHandled()?.let { isSuccessful ->
+                    when (isSuccessful) {
+                        true -> binding.rvMovies.smoothScrollToPosition(0)
+                        false -> Toast.makeText(
+                            requireActivity(),
+                            "Network request error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
         }
     }
 
@@ -71,19 +83,7 @@ class MovieListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.miRefresh -> {
-                with(mainViewModel) {
-                    getMoviesNowPlaying()
-                    isSuccessful.observe(viewLifecycleOwner) {
-                        when (it) {
-                            true -> binding.rvMovies.smoothScrollToPosition(0)
-                            false -> Toast.makeText(
-                                requireActivity(),
-                                "Network request error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
+                mainViewModel.getMoviesNowPlaying()
                 true
             }
             else -> {

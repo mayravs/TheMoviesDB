@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.FragmentMovieDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,14 +14,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailsBinding
-    private val mainViewModel by viewModels<MainViewModel>()
+    private val mainViewModel by activityViewModels<MainViewModel>()
+    private val safeArgs: MovieDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mainViewModel.movie = arguments?.getParcelable("movie")
+        val movie = safeArgs.movie
+        mainViewModel.movie = movie
         binding = DataBindingUtil.inflate<FragmentMovieDetailsBinding>(
             inflater,
             R.layout.fragment_movie_details,

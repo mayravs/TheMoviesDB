@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.themoviesdb.domain.model.Movie
 import com.example.themoviesdb.domain.usecase.GetMoviesUseCase
+import com.example.themoviesdb.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.delay
@@ -24,12 +25,12 @@ class MainViewModel @Inject constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    private val _isSuccessful = MutableLiveData<Boolean>()
-    val isSuccessful: LiveData<Boolean> get() = _isSuccessful
+    private val _actionSuccessful = MutableLiveData<Event<Boolean>>()
+    val actionSuccessful: LiveData<Event<Boolean>> get() = _actionSuccessful
 
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->
         hideProgressBar()
-        _isSuccessful.value = false
+        _actionSuccessful.value = Event(false)
         Log.e("MainViewModel", "Encountered exception: $throwable")
     }
 
@@ -45,9 +46,10 @@ class MainViewModel @Inject constructor(
             delay(600)
             val movies = getMoviesUseCase()
             _movies.value = movies
-            _isSuccessful.value = true
-            hideProgressBar()
+            _actionSuccessful.value = Event(true)
             Log.i("MainViewModel", "api call")
+        }.invokeOnCompletion {
+            hideProgressBar()
         }
     }
 
