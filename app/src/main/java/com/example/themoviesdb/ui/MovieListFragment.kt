@@ -47,11 +47,7 @@ class MovieListFragment : Fragment() {
     }
 
     private fun initRv() {
-        moviesAdapter = MoviesAdapter(MoviesAdapter.OnClickListener { movie ->
-            val action =
-                MovieListFragmentDirections.actionMovieListFragmentToMovieDetailsFragment(movie)
-            findNavController().navigate(action)
-        })
+        moviesAdapter = MoviesAdapter()
         binding.rvMovies.adapter = moviesAdapter
     }
 
