@@ -20,3 +20,4 @@ TheMoviesDB is an android app that allows users to browse movies from the [The M
 * [Jetpack](https://developer.android.com/jetpack/getting-started)
 * [Kotlin](https://kotlinlang.org/)
 * [Data Binding Library](https://developer.android.com/topic/libraries/data-binding)
+* [Jetpack Compose](https://developer.android.com/jetpack/compose)

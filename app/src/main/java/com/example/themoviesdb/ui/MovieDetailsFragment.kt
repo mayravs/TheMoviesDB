@@ -2,12 +2,15 @@ package com.example.themoviesdb.ui
 
 import android.os.Bundle
 import android.view.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.example.themoviesdb.R
 import com.example.themoviesdb.databinding.FragmentMovieDetailsBinding
+import com.example.themoviesdb.ui.compose.MovieDetailsScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +24,7 @@ class MovieDetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val movie = safeArgs.movie
         mainViewModel.movie = movie
         binding = DataBindingUtil.inflate<FragmentMovieDetailsBinding>(
@@ -32,6 +35,17 @@ class MovieDetailsFragment : Fragment() {
         ).apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = mainViewModel
+
+            composeView.apply {
+                setViewCompositionStrategy(
+                    ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+                )
+                setContent {
+                    MaterialTheme {
+                        MovieDetailsScreen(movie)
+                    }
+                }
+            }
         }
         return binding.root
     }

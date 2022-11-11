@@ -16,6 +16,6 @@ data class Movie(
 
     val posterImageUrl: String get() = "https://image.tmdb.org/t/p/w342/$poster_path"
     val backdropImageUrl: String get() = "https://image.tmdb.org/t/p/w780/$backdrop_path"
-    val movieRating: Float get() = (vote_average.toFloat().times(5)).div(10)
+    val movieRating: Double get() = (vote_average.times(5)).div(10)
 
 }
