@@ -1,6 +1,6 @@
 # TheMoviesDB
 
-TheMoviesDB is an android app that allows users to browse movies from the [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
+TheMoviesDB is a native android application that allows users to browse through movies using the [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction).
 
 ### User Stories
 
@@ -9,7 +9,7 @@ TheMoviesDB is an android app that allows users to browse movies from the [The M
 - [x] User can refresh the list of movies from the ActionBar of the main screen.
 - [x] User can view the app on various device sizes and orientations.
 
-### App Walkthrough GIF
+### App Walkthrough
 
 <img src="https://github.com/mayravs/TheMoviesDB/blob/main/demo.gif" width=250><br>
 
