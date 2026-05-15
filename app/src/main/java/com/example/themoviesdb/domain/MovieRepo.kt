@@ -1,4 +1,4 @@
-package com.example.themoviesdb.data.repository
+package com.example.themoviesdb.domain
 
 import com.example.themoviesdb.domain.model.MoviesResponse
 

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.themoviesdb.domain.model.Movie
-import com.example.themoviesdb.ui.compose.MovieListItemView
 
 class MoviesAdapter : ListAdapter<Movie, MoviesAdapter.ViewHolder>(DiffCallback) {
 
@@ -24,13 +23,7 @@ class MoviesAdapter : ListAdapter<Movie, MoviesAdapter.ViewHolder>(DiffCallback)
     class ViewHolder(composeView: ComposeView) : RecyclerView.ViewHolder(composeView) {
 
         fun bind(movie: Movie) {
-            (itemView as ComposeView).setContent {
-                MaterialTheme {
-                    MovieListItemView(movie = movie) {
-                        navigateToMovie(movie)
-                    }
-                }
-            }
+
         }
 
         private fun navigateToMovie(movie: Movie) {

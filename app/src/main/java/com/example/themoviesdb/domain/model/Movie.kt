@@ -8,14 +8,14 @@ data class Movie(
     val id: Int,
     val title: String,
     val overview: String,
-    val vote_average: Double,
-    val release_date: String,
-    val poster_path: String,
-    val backdrop_path: String
+    val voteAverage: Double,
+    val releaseDate: String,
+    val posterPath: String,
+    val backdropPath: String
 ) : Parcelable {
 
-    val posterImageUrl: String get() = "https://image.tmdb.org/t/p/w342/$poster_path"
-    val backdropImageUrl: String get() = "https://image.tmdb.org/t/p/w780/$backdrop_path"
-    val movieRating: Double get() = (vote_average.times(5)).div(10)
+    val posterImageUrl: String get() = "https://image.tmdb.org/t/p/w342/$posterPath"
+    val backdropImageUrl: String get() = "https://image.tmdb.org/t/p/w780/$backdropPath"
+    val movieRating: Double get() = (voteAverage.times(5)).div(10)
 
 }

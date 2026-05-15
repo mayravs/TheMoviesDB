@@ -52,24 +52,7 @@ class MovieListFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        with(mainViewModel) {
-            movies.observe(viewLifecycleOwner) {
-                moviesAdapter.submitList(it)
-            }
 
-            actionSuccessful.observe(viewLifecycleOwner) {
-                it.getContentIfNotHandled()?.let { isSuccessful ->
-                    when (isSuccessful) {
-                        true -> binding.rvMovies.smoothScrollToPosition(0)
-                        false -> Toast.makeText(
-                            requireActivity(),
-                            "Network request error",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

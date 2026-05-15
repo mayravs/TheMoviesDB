@@ -1,6 +1,6 @@
 package com.example.themoviesdb.di
 
-import com.example.themoviesdb.data.repository.MovieRepo
+import com.example.themoviesdb.domain.MovieRepo
 import com.example.themoviesdb.data.repository.MovieRepoImpl
 import dagger.Binds
 import dagger.Module

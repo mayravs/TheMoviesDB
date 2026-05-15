@@ -122,7 +122,7 @@ fun MovieDetailContent(movie: Movie) {
     Surface {
         Column(Modifier.fillMaxWidth()) {
             MovieBackdrop(backdropImageUrl = movie.backdropImageUrl)
-            MovieReleaseDate(releaseDate = movie.release_date)
+            MovieReleaseDate(releaseDate = movie.releaseDate)
             MovieVoteAverage(rating = movie.movieRating)
             MovieOverview(overview = movie.overview)
         }

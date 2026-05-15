@@ -25,8 +25,6 @@ class MovieDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val movie = safeArgs.movie
-        mainViewModel.movie = movie
         binding = DataBindingUtil.inflate<FragmentMovieDetailsBinding>(
             inflater,
             R.layout.fragment_movie_details,
@@ -41,9 +39,7 @@ class MovieDetailsFragment : Fragment() {
                     ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
                 )
                 setContent {
-                    MaterialTheme {
-                        MovieDetailsScreen(movie)
-                    }
+
                 }
             }
         }
@@ -52,6 +48,6 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).supportActionBar?.title = mainViewModel.movie?.title
+
     }
 }
