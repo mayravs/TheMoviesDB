@@ -43,7 +43,7 @@ import com.example.themoviesdb.domain.model.Movie
 fun MovieListScreen(
     modifier: Modifier = Modifier,
     movieViewModel: MainViewModel = hiltViewModel(),
-    onMovieClick: () -> Unit
+    onMovieClick: (Movie) -> Unit
 ) {
     val uiState by movieViewModel.uiState.collectAsStateWithLifecycle()
 
@@ -94,7 +94,7 @@ fun MovieListScreen(
 fun MoviesList(
     uiState: MovieUiState.Success,
     modifier: Modifier = Modifier,
-    onMovieClick: () -> Unit
+    onMovieClick: (Movie) -> Unit
 ) {
     val movies = uiState.movies
     LazyColumn(
@@ -103,7 +103,7 @@ fun MoviesList(
         items(movies) { movie ->
             MovieItem (
                 movie = movie,
-                onClick = onMovieClick
+                onClick = { onMovieClick(movie) }
             )
         }
     }
