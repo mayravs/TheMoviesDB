@@ -21,15 +21,11 @@ class ApplicationModuleProvider {
 
     @Provides
     @Singleton
-    fun retrofitBuilder(): Retrofit.Builder {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
+            .baseUrl(BuildConfig.MOVIESDB_URL)
             .addConverterFactory(GsonConverterFactory.create())
-    }
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(retrofitBuilder: Retrofit.Builder): Retrofit {
-        return retrofitBuilder.baseUrl(BuildConfig.MOVIESDB_URL).build()
+            .build()
     }
 
 }

@@ -72,7 +72,7 @@ fun MovieListScreen(
                     Text(text = "Error: $msg")
                     Spacer(modifier = Modifier.height(8.dp))
                     Button(
-                        onClick = { movieViewModel.getMoviesNowPlaying() }
+                        onClick = { movieViewModel.refreshMoviesNowPlaying() }
                     ) {
                         Text(text = "Retry")
                     }
