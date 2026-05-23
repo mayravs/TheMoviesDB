@@ -1,9 +1,10 @@
-package com.example.themoviesdb.ui
+package com.example.themoviesdb.ui.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.themoviesdb.domain.usecase.GetMoviesUseCase
 import com.example.themoviesdb.domain.usecase.RefreshMoviesUseCase
+import com.example.themoviesdb.ui.list.MovieUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -3,6 +3,7 @@ package com.example.themoviesdb.data.repository
 import android.util.Log
 import com.example.themoviesdb.BuildConfig
 import com.example.themoviesdb.data.local.MovieDao
+import com.example.themoviesdb.data.local.toDomain
 import com.example.themoviesdb.data.local.toDomainList
 import com.example.themoviesdb.data.model.toEntityList
 import com.example.themoviesdb.data.remote.MovieService
@@ -30,6 +31,12 @@ class MovieRepoImpl @Inject constructor (
             movieDao.insertAll(entities)
         } catch (e: Exception) {
             Log.e("Error","Error: $e")
+        }
+    }
+
+    override fun getMovieById(id: Int): Flow<Movie?> {
+        return movieDao.getMovieById(id).map { entity ->
+            entity?.toDomain()
         }
     }
 }

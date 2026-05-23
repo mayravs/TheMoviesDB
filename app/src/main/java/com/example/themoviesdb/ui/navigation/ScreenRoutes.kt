@@ -1,8 +1,12 @@
 package com.example.themoviesdb.ui.navigation
 
-sealed class Screen (val route: String) {
+import kotlinx.serialization.Serializable
 
-    object MovieList : Screen("MovieList")
+sealed interface Screen {
 
-    object Details: Screen("Details/{movie}")
+    @Serializable
+    object MovieList : Screen
+
+    @Serializable
+    data class Details(val movieId: Int) : Screen
 }

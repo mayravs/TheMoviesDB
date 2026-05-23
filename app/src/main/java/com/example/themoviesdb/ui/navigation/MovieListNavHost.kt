@@ -10,7 +10,7 @@ fun AppNavHost() {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.MovieList.route
+        startDestination = Screen.MovieList
     ) {
         appNavGraph(
             navController = navController

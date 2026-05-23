@@ -7,4 +7,6 @@ interface MovieRepo {
     suspend fun getMoviesNowPlaying(): Flow<List<Movie>>
 
     suspend fun refreshMoviesNowPlaying()
+
+    fun getMovieById(id: Int): Flow<Movie?>
 }

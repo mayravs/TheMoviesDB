@@ -1,4 +1,4 @@
-package com.example.themoviesdb.ui
+package com.example.themoviesdb.ui.list
 
 import com.example.themoviesdb.domain.model.Movie
 

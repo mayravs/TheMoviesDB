@@ -1,4 +1,4 @@
-package com.example.themoviesdb.ui
+package com.example.themoviesdb.ui.list
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -18,15 +18,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -37,18 +40,32 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
+import com.example.themoviesdb.R
 import com.example.themoviesdb.domain.model.Movie
+import com.example.themoviesdb.ui.list.MovieUiState
 
 @Composable
 fun MovieListScreen(
     modifier: Modifier = Modifier,
     movieViewModel: MainViewModel = hiltViewModel(),
-    onMovieClick: (Movie) -> Unit
+    onMovieClick: (Int) -> Unit
 ) {
     val uiState by movieViewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
-        topBar = { /* TODO */ }
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = stringResource(R.string.now_playing),
+                        textAlign = TextAlign.Center
+                    )
+                },
+                backgroundColor = MaterialTheme.colors.primary,
+                contentColor = MaterialTheme.colors.onPrimary,
+                elevation = 4.dp
+            )
+        }
     ) { padding ->
 
         when (uiState) {
@@ -69,12 +86,12 @@ fun MovieListScreen(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "Error: $msg")
+                    Text(text = stringResource(R.string.error, msg))
                     Spacer(modifier = Modifier.height(8.dp))
                     Button(
                         onClick = { movieViewModel.refreshMoviesNowPlaying() }
                     ) {
-                        Text(text = "Retry")
+                        Text(text = stringResource(R.string.retry))
                     }
                 }
             }
@@ -94,7 +111,7 @@ fun MovieListScreen(
 fun MoviesList(
     uiState: MovieUiState.Success,
     modifier: Modifier = Modifier,
-    onMovieClick: (Movie) -> Unit
+    onMovieClick: (Int) -> Unit
 ) {
     val movies = uiState.movies
     LazyColumn(
@@ -103,7 +120,7 @@ fun MoviesList(
         items(movies) { movie ->
             MovieItem (
                 movie = movie,
-                onClick = { onMovieClick(movie) }
+                onClick = { onMovieClick(movie.id) }
             )
         }
     }
@@ -125,8 +142,7 @@ fun MovieItem(
         elevation = 4.dp
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            modifier = Modifier.fillMaxWidth()
         ) {
             val painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(LocalContext.current)
@@ -136,9 +152,9 @@ fun MovieItem(
             )
             Image(
                 painter = painter,
-                contentScale = ContentScale.Crop,
                 contentDescription = null,
-                modifier = Modifier.size(80.dp)
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(160.dp)
             )
             Column(
                 modifier = Modifier
@@ -169,24 +185,6 @@ fun MovieListScreenPreview() {
     MoviesList(
         uiState = MovieUiState.Success(
             listOf(
-                Movie(
-                    id = 121,
-                    title = "The Super Mario Bros. Movie",
-                    overview =  "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.",
-                    voteAverage = 7.5,
-                    releaseDate = "2023-04-05",
-                    posterPath = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                    backdropPath = "/iJQIbOPm81fPEGKt5BPuZmfnA54.jpg"
-                ),
-                Movie(
-                    id = 121,
-                    title = "The Super Mario Bros. Movie",
-                    overview =  "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.",
-                    voteAverage = 7.5,
-                    releaseDate = "2023-04-05",
-                    posterPath = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                    backdropPath = "/iJQIbOPm81fPEGKt5BPuZmfnA54.jpg"
-                ),
                 Movie(
                     id = 121,
                     title = "The Super Mario Bros. Movie",

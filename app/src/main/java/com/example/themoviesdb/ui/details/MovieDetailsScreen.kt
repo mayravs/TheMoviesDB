@@ -1,4 +1,4 @@
-package com.example.themoviesdb.ui
+package com.example.themoviesdb.ui.details
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -6,6 +6,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -20,19 +21,50 @@ import com.example.themoviesdb.R
 import com.example.themoviesdb.domain.model.Movie
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.themoviesdb.ui.list.MovieUiState
 import kotlin.math.floor
 import kotlin.math.ceil
 
 @Composable
 fun MovieDetailsScreen(
     modifier: Modifier = Modifier,
-    movie: Movie
+    detailsViewModel: MovieDetailsViewModel = hiltViewModel()
 ) {
-    Surface(
-        modifier = modifier
-    ){
-        MovieDetailContent(movie = movie)
+    val uiState by detailsViewModel.uiState.collectAsStateWithLifecycle()
+
+    when (uiState) {
+        is MovieDetailsUiState.Loading -> {
+            Box(
+                modifier = modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+                content = {
+                    CircularProgressIndicator()
+                }
+            )
+        }
+
+        is MovieDetailsUiState.Error -> {
+            val msg = (uiState as MovieDetailsUiState.Error).message
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(text = stringResource(R.string.error, msg))
+            }
+        }
+
+        is MovieDetailsUiState.Success -> {
+            Surface(
+                modifier = modifier
+            ) {
+                MovieDetailContent(movie = (uiState as MovieDetailsUiState.Success).movie)
+            }
+        }
     }
+
 }
 
 @Composable
@@ -124,13 +156,13 @@ fun RatingBar(
 fun MovieDetailContentPreview() {
     MovieDetailContent(
         movie = Movie(
-            12,
-            "The Orphan",
-            "After escaping from an Estonian psychiatric facility, Leena Klammer travels to America by impersonating Esther, the missing daughter of a wealthy family. But when her mask starts to slip, she is put against a mother who will protect her family from the murderous “child” at any cost.",
-            3.5,
-            "2022-07-27",
-            "",
-            "https://image.tmdb.org/t/p/w780//5GA3vV1aWWHTSDO5eno8V5zDo8r.jpg"
+            id =12,
+            title ="The Orphan",
+            overview = "After escaping from an Estonian psychiatric facility, Leena Klammer travels to America by impersonating Esther, the missing daughter of a wealthy family. But when her mask starts to slip, she is put against a mother who will protect her family from the murderous “child” at any cost.",
+            voteAverage = 3.5,
+            releaseDate = "2022-07-27",
+            posterPath = "",
+            backdropPath = "https://image.tmdb.org/t/p/w780//5GA3vV1aWWHTSDO5eno8V5zDo8r.jpg"
         )
     )
 }
