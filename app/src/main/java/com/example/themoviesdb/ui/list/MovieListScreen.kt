@@ -15,14 +15,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -38,12 +37,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
+import coil3.compose.rememberAsyncImagePainter
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.example.themoviesdb.R
 import com.example.themoviesdb.domain.model.Movie
-import com.example.themoviesdb.ui.list.MovieUiState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieListScreen(
     modifier: Modifier = Modifier,
@@ -60,10 +60,7 @@ fun MovieListScreen(
                         text = stringResource(R.string.now_playing),
                         textAlign = TextAlign.Center
                     )
-                },
-                backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.onPrimary,
-                elevation = 4.dp
+                }
             )
         }
     ) { padding ->
@@ -126,7 +123,6 @@ fun MoviesList(
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MovieItem(
     movie: Movie,
@@ -138,8 +134,7 @@ fun MovieItem(
             .clickable(
                 onClick = onClick
             ),
-        shape = RoundedCornerShape(8.dp),
-        elevation = 4.dp
+        shape = RoundedCornerShape(8.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()
