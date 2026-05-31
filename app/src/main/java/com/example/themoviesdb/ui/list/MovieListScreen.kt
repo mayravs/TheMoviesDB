@@ -42,6 +42,7 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.example.themoviesdb.R
 import com.example.themoviesdb.domain.model.Movie
+import com.example.themoviesdb.ui.theme.TheMoviesDBTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -177,20 +178,22 @@ fun MovieItem(
 @Preview(showBackground = true)
 @Composable
 fun MovieListScreenPreview() {
-    MoviesList(
-        uiState = MovieUiState.Success(
-            listOf(
-                Movie(
-                    id = 121,
-                    title = "The Super Mario Bros. Movie",
-                    overview =  "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.",
-                    voteAverage = 7.5,
-                    releaseDate = "2023-04-05",
-                    posterPath = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-                    backdropPath = "/iJQIbOPm81fPEGKt5BPuZmfnA54.jpg"
+    TheMoviesDBTheme {
+        MoviesList(
+            uiState = MovieUiState.Success(
+                listOf(
+                    Movie(
+                        id = 121,
+                        title = "The Super Mario Bros. Movie",
+                        overview = "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.",
+                        voteAverage = 7.5,
+                        releaseDate = "2023-04-05",
+                        posterPath = "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
+                        backdropPath = "/iJQIbOPm81fPEGKt5BPuZmfnA54.jpg"
+                    )
                 )
-            )
-        ),
-        onMovieClick = {}
-    )
+            ),
+            onMovieClick = {}
+        )
+    }
 }

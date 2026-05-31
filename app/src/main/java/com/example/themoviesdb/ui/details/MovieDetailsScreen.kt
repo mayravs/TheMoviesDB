@@ -27,6 +27,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.example.themoviesdb.ui.theme.TheMoviesDBTheme
 import kotlin.math.floor
 import kotlin.math.ceil
 
@@ -157,15 +158,17 @@ fun RatingBar(
 @Preview
 @Composable
 fun MovieDetailContentPreview() {
-    MovieDetailContent(
-        movie = Movie(
-            id =12,
-            title ="The Orphan",
-            overview = "After escaping from an Estonian psychiatric facility, Leena Klammer travels to America by impersonating Esther, the missing daughter of a wealthy family. But when her mask starts to slip, she is put against a mother who will protect her family from the murderous “child” at any cost.",
-            voteAverage = 3.5,
-            releaseDate = "2022-07-27",
-            posterPath = "",
-            backdropPath = "https://image.tmdb.org/t/p/w780//5GA3vV1aWWHTSDO5eno8V5zDo8r.jpg"
+    TheMoviesDBTheme {
+        MovieDetailContent(
+            movie = Movie(
+                id = 12,
+                title = "The Orphan",
+                overview = "After escaping from an Estonian psychiatric facility, Leena Klammer travels to America by impersonating Esther, the missing daughter of a wealthy family. But when her mask starts to slip, she is put against a mother who will protect her family from the murderous “child” at any cost.",
+                voteAverage = 3.5,
+                releaseDate = "2022-07-27",
+                posterPath = "",
+                backdropPath = "https://image.tmdb.org/t/p/w780//5GA3vV1aWWHTSDO5eno8V5zDo8r.jpg"
+            )
         )
-    )
+    }
 }
