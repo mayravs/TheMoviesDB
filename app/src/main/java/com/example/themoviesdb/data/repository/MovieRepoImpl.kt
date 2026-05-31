@@ -1,7 +1,6 @@
 package com.example.themoviesdb.data.repository
 
 import android.util.Log
-import com.example.themoviesdb.BuildConfig
 import com.example.themoviesdb.data.local.MovieDao
 import com.example.themoviesdb.data.local.toDomain
 import com.example.themoviesdb.data.local.toDomainList
@@ -26,7 +25,7 @@ class MovieRepoImpl @Inject constructor (
 
     override suspend fun refreshMoviesNowPlaying() {
         try {
-            val response = movieService.getMoviesNowPlaying(BuildConfig.MOVIESDB_KEY)
+            val response = movieService.getMoviesNowPlaying()
             val entities = response.toEntityList()
             movieDao.insertAll(entities)
         } catch (e: Exception) {
