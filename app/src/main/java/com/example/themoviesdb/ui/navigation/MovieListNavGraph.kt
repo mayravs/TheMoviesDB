@@ -18,6 +18,10 @@ fun NavGraphBuilder.appNavGraph(
     }
 
     composable<Screen.Details> {
-        MovieDetailsScreen()
+        MovieDetailsScreen(
+            onBackPressed = {
+                navController.popBackStack()
+            }
+        )
     }
 }
