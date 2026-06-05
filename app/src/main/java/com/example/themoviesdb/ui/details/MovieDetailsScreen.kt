@@ -5,6 +5,8 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
@@ -33,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.rememberAsyncImagePainter
@@ -54,12 +57,15 @@ fun MovieDetailsScreen(
     val uiState by detailsViewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
+        modifier = modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
                 title = {
                     (uiState as? MovieDetailsUiState.Success)?.let {
                         Text(
                             text = it.movie.title,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 2.2.sp,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -134,11 +140,13 @@ fun MovieDetailsScreen(
 fun MovieDetailContent(
     movie: Movie
 ) {
-    Surface {
+    Surface(
+        color = MaterialTheme.colorScheme.primary
+    ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .background(color = MaterialTheme.colorScheme.primary)
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
             val painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(LocalContext.current)

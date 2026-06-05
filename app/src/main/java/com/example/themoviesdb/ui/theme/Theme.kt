@@ -13,20 +13,20 @@ import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     primary = Navy10,
-    secondary = PurpleGrey80,
-    tertiary = Pink80,
-    background = Navy10
+    secondary = Color.Black,
+    background = Navy10,
+    onPrimary = Color.White,
+    onSecondary = Color.White,
+    onBackground = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Navy10,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
+    secondary = Color.Black,
     background = Navy10,
     surface = Color(0xFFFFFBFE),
     onPrimary = Color.White,
     onSecondary = Color.White,
-    onTertiary = Color.White,
     onBackground = Color.White,
     onSurface = Color(0xFF1C1B1F),
 )
@@ -35,7 +35,7 @@ private val LightColorScheme = lightColorScheme(
 fun TheMoviesDBTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

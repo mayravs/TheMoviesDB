@@ -59,11 +59,14 @@ fun MovieListScreen(
     val uiState by movieViewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
+        modifier = modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
                 title = {
                     Text(
                         text = stringResource(R.string.now_playing),
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 2.2.sp,
                         textAlign = TextAlign.Center
                     )
                 },
@@ -135,7 +138,9 @@ fun MoviesList(
 ) {
     val movies = uiState.movies
     LazyColumn(
-        modifier = modifier.background(color = MaterialTheme.colorScheme.primary)
+        modifier = modifier
+            .fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.primary)
     ) {
         items(movies) { movie ->
             MovieItem (
