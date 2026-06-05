@@ -1,5 +1,7 @@
 package com.example.themoviesdb.ui.details
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -29,16 +31,19 @@ import com.example.themoviesdb.R
 import com.example.themoviesdb.domain.model.Movie
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.example.themoviesdb.ui.DateUtils
 import com.example.themoviesdb.ui.theme.TheMoviesDBTheme
 import kotlin.math.floor
 import kotlin.math.ceil
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieDetailsScreen(
@@ -124,6 +129,7 @@ fun MovieDetailsScreen(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MovieDetailContent(
     movie: Movie
@@ -156,10 +162,22 @@ fun MovieDetailContent(
                 modifier = Modifier.padding(horizontal = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(
-                    text = stringResource(id = R.string.release_date, movie.releaseDate),
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
+                val formattedDate = DateUtils.formatReleaseDate(movie.releaseDate)
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.released_on),
+                        fontWeight = FontWeight.Medium,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+
+                    Text(
+                        text = formattedDate,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
 
                 RatingBar(rating = movie.movieRating)
 
@@ -210,6 +228,7 @@ fun RatingBar(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun MovieDetailContentPreview() {
