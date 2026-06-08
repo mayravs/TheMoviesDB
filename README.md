@@ -1,9 +1,9 @@
 # TheMoviesDB 🍿
-> A responsive movie discovery application that fetches real-time 'Now Playing' data from the TMDB API. Built with a focus on adaptive layouts, it provides a seamless browsing experience across mobile, tablet, and various screen orientations
+> A modern Android application that showcases the latest "Now Playing" movies by fetching data from The Movie Database (TMDB) API. It follows a clean architecture approach and demonstrates a robust, offline-first user experience.
 
 ## 🛠 Tech Stack
 *   **Languages:** [Kotlin](https://kotlinlang.org/)
-*   **Frameworks/Libraries:** [Retrofit](https://square.github.io/retrofit/), [Hilt](https://dagger.dev/hilt/), [Jetpack Compose](https://developer.android.com/jetpack/compose)
+*   **Frameworks/Libraries:** [Retrofit](https://square.github.io/retrofit/), [Hilt](https://dagger.dev/hilt/), [Room](https://developer.android.com/training/data-storage/room?authuser=1), [Jetpack Compose](https://developer.android.com/jetpack/compose)
 *   **Architecture:** MVVM, Clean Architecture
 *   **API:** [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction)
 
@@ -11,8 +11,19 @@
 <img src="https://github.com/mayravs/TheMoviesDB/blob/main/demo.gif" width=250><br>
 
 ## ✨ Key Features
-*   **Core Feature:** User can scroll through a list of [movies currently playing in theaters](https://developers.themoviedb.org/3/movies/get-now-playing) and click on a movie to see additional details in a separate detail screen.
-*   **Technical Highlight:** User can view the app on various device sizes and orientations.
+*   **Movie Discovery:** Browse a list of [currently playing movies](https://developers.themoviedb.org/3/movies/get-now-playing) with high-quality posters and brief overviews.
+*   **Detailed Insights:** View comprehensive details for specific movies, including full overviews, backdrop imagery, release dates, and a visual star rating system.
+*   **Offline Support:** Seamlessly view previously loaded movies even without an internet connection, thanks to local caching.
+*   **Responsive UI:** Fully adaptive layouts that support both Portrait and Landscape orientations with proper scrolling behavior.
+
+## ⚙️ Technical Highlights
+*   **Modern UI Stack:** Built entirely with Jetpack Compose for a declarative UI, utilizing Material 3 components and dynamic theming.
+*   **Clean Architecture:** Organizes code into distinct layers (Data, Domain, UI) to ensure the codebase is maintainable, testable, and scalable.
+*   **Reactive Data Flow:** Uses Kotlin Coroutines and Flow to handle asynchronous data streams and state management (via StateFlow).
+*   **Dependency Injection:** Implements Hilt (Dagger) for standardizing dependency injection across the application.
+*   **Local Persistence:** Employs Room Database as a local cache to implement an "offline-first" architecture.
+*   **Networking & Image Loading:** Uses Retrofit for type-safe API communication and Coil for efficient, lifecycle-aware image loading and caching.
+*   **Type-Safe Navigation:** Utilizes the latest Jetpack Navigation Compose with type-safe arguments for moving between screens.
 
 ## 🚀 Getting Started
 ### Prerequisites
