@@ -8,7 +8,7 @@
 *   **API:** [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction)
 
 ## 📸 Demo
-<img src="https://github.com/mayravs/TheMoviesDB/blob/main/demo.gif" width=250><br>
+<img src="https://github.com/mayravs/TheMoviesDB/blob/main/demo.gif" width=500><br>
 
 ## ✨ Key Features
 *   **Movie Discovery:** Browse a list of [currently playing movies](https://developers.themoviedb.org/3/movies/get-now-playing) with high-quality posters and brief overviews.
