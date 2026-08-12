@@ -5,9 +5,10 @@ import com.example.themoviesdb.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetMoviesUseCase @Inject constructor(private val movieRepo: MovieRepo) {
-
-    suspend operator fun invoke(): Flow<List<Movie>> {
-        return movieRepo.getMoviesNowPlaying()
+class GetMovieByIdUseCase @Inject constructor(
+    private val movieRepo: MovieRepo
+) {
+    operator fun invoke(movieId: Int): Flow<Movie?> {
+        return movieRepo.getMovieById(movieId)
     }
 }

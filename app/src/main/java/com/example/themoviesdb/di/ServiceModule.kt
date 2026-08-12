@@ -1,6 +1,6 @@
 package com.example.themoviesdb.di
 
-import com.example.themoviesdb.data.web.service.MovieService
+import com.example.themoviesdb.data.remote.MovieService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
